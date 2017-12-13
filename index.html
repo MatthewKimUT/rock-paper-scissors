@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+
+
+    <script>
+      function computer_play(){
+        let number = Math.floor(Math.random() * 3);
+        switch(number){
+          case 0:
+            return "Rock";
+          case 1:
+            return "Paper";
+          case 2:
+            return "Scissors";
+        };
+      }
+      function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+      function rps_round(choice){
+        let word = capitalizeFirstLetter(choice.toLowerCase());
+        let comp_choice = computer_play();
+        let result;
+        switch(word){
+          case "Rock":
+             if(comp_choice === "Rock"){
+               result = "Tie";
+             }
+             else if(comp_choice === "Paper"){
+               result = "Lose";
+             }
+             else{
+               result = "Win";
+             }
+            break;
+          case "Paper":
+            if(comp_choice === "Rock"){
+              result = "Win";
+            }
+            else if(comp_choice === "Paper"){
+              result = "Tie";
+            }
+            else{
+              result = "Lose";
+            }
+            break;
+          case "Scissors":
+            if(comp_choice === "Rock"){
+              result = "Lose";
+            }
+            else if(comp_choice === "Paper"){
+              result = "Win";
+            }
+            else{
+              result = "Tie";
+            }
+            break;
+          default:
+              result = "Invalid input"
+            break;
+        };
+        return (result === "Invalid input") ? result : `You ${result}! ${(result === "Lose")? comp_choice : word} ${(result === "Tie") ? "ties" : "beats"} ${(result === "Lose")? word : comp_choice}`
+      }
+      function game(){
+        count = 0;
+        humanWin = 0;
+        compWin = 0;
+        while(count < 5){
+          count++;
+          choice = window.prompt("Enter Rock, Paper, or Scissors");
+          resultString = rps_round(choice);
+          console.log(resultString);
+          let result = resultString.split(' ')[1];
+          if(result === "Win!")
+            humanWin += 1;
+          if(result === "Lose!")
+            compWin += 1;
+          console.log(`Human has won ${humanWin} times, computer has won ${compWin} times.`);
+        }
+      }
+      game();
+    </script>
+  </body>
+</html>
