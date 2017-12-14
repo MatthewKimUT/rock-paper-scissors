@@ -1,0 +1,9 @@
+.resting {
+}
+.playing{
+    display: none;
+}
+
+table, th, td {
+    border:solid;
+}
